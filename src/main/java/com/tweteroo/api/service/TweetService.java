@@ -1,5 +1,6 @@
 package com.tweteroo.api.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,12 @@ public class TweetService {
     private AuthRepository userRepository;
 
     public Tweet postTweet(TweetDTO data){
-        
         Optional<Person> user =  userRepository.findByUsername(data.username());
         Tweet userTweet = new Tweet(data, user.get().getAvatar());
         return repository.save(userTweet);
+    }
+
+    public List<Tweet> getUserTweets(String username){
+        return repository.findByUsername(username);
     }
 }
