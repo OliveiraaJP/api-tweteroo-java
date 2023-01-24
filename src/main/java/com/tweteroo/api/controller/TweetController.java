@@ -24,7 +24,6 @@ public class TweetController {
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
     public Tweet postTweet(@RequestBody @Valid TweetDTO data){
-        Tweet response = service.postTweet(data);
-        return response;
+        return service.postTweet(data);
     }
 }
